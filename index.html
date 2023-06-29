@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Days Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body onload="setAttributes()">
+    <div class="container" ng-app="daysCalculator" ng-controller="ctrl">
+      <h1 class="mt-4">Days Calculator</h1>
+
+      <div class="border p-3 mt-4">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#days-until">Days Until</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#days-since">Days Since</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#days-between">Days Between</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="days-until" class="container tab-pane active fade show"><br>
+            <h2 class="h4">Days Until</h2>
+            <p>The number of days from today until the specified date.</p>
+            <label for="du">Date:</label><br>
+            <input type="date" id="du" ng-model="duDate" max="2999-12-31"><br><br>
+            <p class="h5">{{duDate | daysUntil}}</p>
+          </div>
+
+          <div id="days-since" class="container tab-pane fade"><br>
+            <h2 class="h4">Days Since</h2>
+            <p>The number of days that have passed since the specified date.</p>
+            <label for="ds">Date:</label><br>
+            <input type="date" id="ds" ng-model="dsDate" min="1000-01-01"><br><br>
+            <p class="h5">{{dsDate | daysSince}}</p>
+          </div>
+
+          <div id="days-between" class="container tab-pane fade"><br>
+            <h2 class="h4">Days Between</h2>
+            <p>The number of days between the two specified dates.</p>
+            <label for="start-date">Start Date:</label><br>
+            <input type="date" id="start-date" ng-model="startDate" min="1000-01-01" max="2999-12-31"><br><br>
+            <label for="end-date">End Date:</label><br>
+            <input type="date" id="end-date" ng-model="endDate" min="1000-01-01" max="2999-12-31"><br><br>
+            <p class="h5">{{startDate | daysBetween: endDate}}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
